@@ -7,5 +7,5 @@
 __version: 0.0.1__
 
 ## Url:
-__[https://carlitoshxcx.github.io/TransferenciasBancoNix/dist/](https://carlitoshxcx.github.io/TransferenciasBancoNix/dist/)__
+__[https://carlitoshxcx.github.io/TransferenciasBancoNix/src/](https://carlitoshxcx.github.io/TransferenciasBancoNix/src/)__
 
