@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="appTransferenciasBancoNix">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferências Banco NIX</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Transferências Banco NIX">
+    <link rel="apple-touch-icon" href="images/banconix-logo-152x152.png">
+    <meta name="msapplication-TileImage" content="images/banconix-logo-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+    <!-- Angular LIB -->
+    <script src="lib/angular.min.js"></script>
+    <script src="scripts/appTransferenciasBancoNix.js"></script>
+</head>
+
+<body ng-controller="ctrlTransferencias as transferencias">
+
+    <header class="header">
+        <h1 class="header__title">Transferências (<small>{{ transferencias.length }}</small>)</h1>
+        <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
+    </header>
+
+    <main class="main">
+        <div class="table_transferencias">
+            <table width="95%" align="center">
+                <thead class="itemtitle">
+                    <td class="itemtitle_index"></td>
+                    <td class="itemtitle_id">ID</td>
+                    <td class="itemtitle_pagador_nome">Pagador</td>
+                    <td class="itemtitle_beneficiario_nome">Beneficiário</td>
+                    <td class="itemtitle_status">Status</td>
+                    <td class="itemtitle_tipo">Tipo</td>
+                    <td class="itemtitle_valor">Valor</td>
+                </thead>
+                <tr class="itemtitle_options">
+                    <td class="itemtitle_index"></td>
+                    <td class="itemtitle_id"></td>
+                    <td class="itemtitle_pagador_nome"><input type="text" name="pagador_nome"></td>
+                    <td class="itemtitle_beneficiario_nome"><input type="text" name="beneficiario_nome"></td>
+                    <td class="itemtitle_status"> <select ng-click="selectStatus"> <option>Selecione</option><option ng-repeat="item in filtroStatus">{{ item }}</option> </select> </td>
+                    <td class="itemtitle_tipo"> <select ng-click="selectTipo"> <option>Selecione</option><option ng-repeat="item in filtroTipo">{{ item }}</option> </select> </td>
+                    <td class="itemtitle_valor"> <select> <option>Selecione</option> <option>↑</option><option>↓</option> </select> </td>
+                </thead>
+                <tr ng-repeat="item in transferencias">
+                    <td class="item_index"><small>#{{ $index + 1 }}</small></td>
+                    <td class="item_id" title="{{ item.id }}"><small>{{ item.idMin }}</small></td>
+                    <td class="item_pagador_nome">{{ item.pagador.nome }}</td>
+                    <td class="item_beneficiario_nome">{{ item.beneficiario.nome }}</td>
+                    <td class="item_status">{{ item.status }}</td>
+                    <td class="item_tipo">{{ item.tipo }}</td>
+                    <td class="item_valor"><small>R$</small> {{ item.valor }}</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+</body>
+
+</html>
