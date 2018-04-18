@@ -6,7 +6,6 @@
     "url": "https://github.com/carlitoshxcx/TransferenciasBancoNix.git",
     "type": "git"
   },
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
