@@ -5,9 +5,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Transferências Banco NIX</title>
+    
     <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Materialize UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    
     <!-- Add to home screen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -15,52 +23,42 @@
     <link rel="apple-touch-icon" href="images/banconix-logo-152x152.png">
     <meta name="msapplication-TileImage" content="images/banconix-logo-144x144.png">
     <meta name="msapplication-TileColor" content="#2F3BA2">
+    
     <!-- Angular LIB -->
     <script src="lib/angular.min.js"></script>
     <script src="scripts/appTransferenciasBancoNix.js"></script>
 </head>
-
 <body ng-controller="ctrlTransferencias as transferencias">
 
     <header class="header">
         <h1 class="header__title">Transferências (<small>{{ transferencias.length }}</small>)</h1>
-        <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
+        <div>
+            <div style="display: inline-block;">
+                <select ng-model="tamanhoPagina" id="tamanhoPagina"  class="browser-default btn" style="padding: 0px 0px;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+        </div>
     </header>
 
     <main class="main">
-        <div class="table_transferencias">
-            <table width="95%" align="center">
-                <thead class="itemtitle">
-                    <td class="itemtitle_index"></td>
-                    <td class="itemtitle_id">ID</td>
-                    <td class="itemtitle_pagador_nome">Pagador</td>
-                    <td class="itemtitle_beneficiario_nome">Beneficiário</td>
-                    <td class="itemtitle_status">Status</td>
-                    <td class="itemtitle_tipo">Tipo</td>
-                    <td class="itemtitle_valor">Valor</td>
-                </thead>
-                <tr class="itemtitle_options">
-                    <td class="itemtitle_index"></td>
-                    <td class="itemtitle_id"></td>
-                    <td class="itemtitle_pagador_nome"><input type="text" name="pagador_nome"></td>
-                    <td class="itemtitle_beneficiario_nome"><input type="text" name="beneficiario_nome"></td>
-                    <td class="itemtitle_status"> <select ng-click="selectStatus"> <option>Selecione</option><option ng-repeat="item in filtroStatus">{{ item }}</option> </select> </td>
-                    <td class="itemtitle_tipo"> <select ng-click="selectTipo"> <option>Selecione</option><option ng-repeat="item in filtroTipo">{{ item }}</option> </select> </td>
-                    <td class="itemtitle_valor"> <select> <option>Selecione</option> <option>↑</option><option>↓</option> </select> </td>
-                </thead>
-                <tr ng-repeat="item in transferencias">
-                    <td class="item_index"><small>#{{ $index + 1 }}</small></td>
-                    <td class="item_id" title="{{ item.id }}"><small>{{ item.idMin }}</small></td>
-                    <td class="item_pagador_nome">{{ item.pagador.nome }}</td>
-                    <td class="item_beneficiario_nome">{{ item.beneficiario.nome }}</td>
-                    <td class="item_status">{{ item.status }}</td>
-                    <td class="item_tipo">{{ item.tipo }}</td>
-                    <td class="item_valor"><small>R$</small> {{ item.valor }}</td>
-                </tr>
-            </table>
+        
+        <transferencias></transferencias>
+
+        <div>
+            
+            <div align="center" style="margin: 20px 0;">
+                
+            </div>
+            <div align="center" style="margin: 20px 0;">
+                <button ng-disabled="paginaAtual == 0" ng-click="paginaAtual=paginaAtual-1" class="waves-effect waves-light btn-small">Anterior</button>
+                <span class="waves-effect waves-light btn disabled">{{paginaAtual+1}}/{{numeroDePaginas()}}</span>
+                <button ng-disabled="paginaAtual >= transferenciasFiltradas().length/tamanhoPagina - 1" ng-click="paginaAtual=paginaAtual+1" class="waves-effect waves-light btn-small">Próximo</button>
+            </div>
         </div>
     </main>
 
 </body>
-
 </html>

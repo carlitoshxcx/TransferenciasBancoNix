@@ -1,7 +1,11 @@
 {
-  "name": "TransferenciasBancoNix",
+  "name": "transferencias-banconix",
   "version": "1.0.0",
   "description": "Teste de desenvolvimento Front-End para a empresa Nexxera.",
+  "repository": {
+    "url": "https://github.com/carlitoshxcx/TransferenciasBancoNix.git",
+    "type": "git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,5 +13,6 @@
   "author": "Carlos Eduardo Gomes <carlitoshxcx@gmail.com>",
   "license": "GPL-3.0",
   "devDependencies": {
+    "materialize-css": "^1.0.0-beta"
   }
 }
